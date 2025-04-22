@@ -1,0 +1,113 @@
+/* Form layout styles */
+.form-container {
+	@apply max-w-3xl mx-auto p-6 bg-white rounded-xl shadow-lg;
+}
+
+/* Form section styles */
+.form-section {
+	@apply mt-6 first:mt-0;
+}
+
+.form-section-header {
+	@apply flex items-center justify-between py-2;
+}
+
+.form-section-content {
+	@apply py-4 space-y-4;
+}
+
+/* Input field styles */
+.form-input {
+	@apply w-full p-3 border rounded-lg transition-all duration-200;
+}
+
+.form-input-valid {
+	@apply border-gray-200 focus:ring-blue-500 focus:border-blue-500;
+}
+
+.form-input-error {
+	@apply border-red-500 focus:ring-red-400 bg-red-50;
+}
+
+/* Button styles */
+.primary-button {
+	@apply px-6 py-3 bg-blue-600 text-white rounded-lg shadow-sm hover:bg-blue-700 transition-colors;
+}
+
+.secondary-button {
+	@apply px-4 py-2 border border-blue-200 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors;
+}
+
+/* Progress indicator styles */
+.progress-track {
+	@apply h-1 bg-gray-200 rounded-full overflow-hidden;
+}
+
+.progress-bar {
+	@apply h-full bg-blue-500 transition-all duration-500 ease-out;
+}
+
+/* Animation utilities */
+.fade-in {
+	animation: fadeIn 0.3s ease-in-out;
+}
+
+.slide-in {
+	animation: slideIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes slideIn {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Card styles */
+.card {
+	@apply bg-white rounded-lg shadow-sm border border-gray-100;
+}
+
+.card-header {
+	@apply p-4 border-b border-gray-100;
+}
+
+.card-body {
+	@apply p-4;
+}
+
+.card-footer {
+	@apply p-4 border-t border-gray-100;
+}
+
+/* Form grid layouts */
+.form-grid {
+	@apply grid grid-cols-1 gap-4 md:grid-cols-2;
+}
+
+/* Form divider */
+.form-divider {
+	@apply relative flex items-center py-5;
+}
+
+.form-divider:before,
+.form-divider:after {
+	@apply content-[''] flex-grow border-t border-gray-200;
+}
+
+.form-divider-text {
+	@apply flex-shrink mx-4 text-sm font-medium text-gray-500;
+}
