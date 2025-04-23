@@ -17,7 +17,7 @@ const TermsSection = ({ register, errors }) => {
 		<div className="p-4 mt-6 space-y-3 bg-teal-50 rounded-lg">
 			<div className="flex items-start gap-3">
 				<div className="flex-shrink-0 p-1 bg-teal-100 rounded-full">
-					<ShieldCheck className="w-5 h-5 text-blue-600" />
+					<ShieldCheck className="w-5 h-5 text-teal-600" />
 				</div>
 				<div>
 					<h3 className="text-sm font-medium text-gray-900">

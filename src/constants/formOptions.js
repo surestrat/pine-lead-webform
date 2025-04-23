@@ -20,6 +20,7 @@ export const licenseTypeOptions = [
 export const licenseRestrictionOptions = [
 	{ value: "none", label: "None" },
 	{ value: "auto", label: "Automatic Cars Only" },
+	{ value: "glasses", label: "Glasses" },
 	{ value: "disabled", label: "Disabled" },
 ];
 
@@ -76,7 +77,7 @@ export const typeOfNightParkOptions = [
 	{ value: "Garage", label: "Standalone House" },
 	{ value: "Carport", label: "Plot" },
 	{ value: "InTheOpen", label: "Complex" },
-	{ value: "Item 1", label: "Unconfirmed" },
+	{ value: "Unconfirmed", label: "Unconfirmed" },
 ];
 
 export const usedForOptions = [

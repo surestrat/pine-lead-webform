@@ -412,7 +412,7 @@ const QuoteForm = () => {
 		const step = steps[currentStep];
 		return (
 			<div className="flex flex-col items-start">
-				<div className="flex items-center text-blue-100 text-sm mb-1">
+				<div className="flex items-center text-teal-100 text-sm mb-1">
 					<span>
 						Step {currentStep + 1} of {steps.length}:{" "}
 					</span>
@@ -461,7 +461,7 @@ const QuoteForm = () => {
 						>
 							<a
 								href="/"
-								className="inline-flex items-center px-4 py-2 text-blue-600 border border-blue-200 rounded-lg shadow-sm hover:bg-blue-50"
+								className="inline-flex items-center px-4 py-2 text-teal-600 border border-teal-200 rounded-lg shadow-sm hover:bg-teal-50"
 							>
 								Return to Home
 							</a>
@@ -593,9 +593,9 @@ const QuoteForm = () => {
 									{/* Step 4: Terms & Submit */}
 									{currentStep === 3 && (
 										<>
-											<div className="bg-blue-50/50 p-6 rounded-xl mb-6">
+											<div className="bg-teal-50/50 p-6 rounded-xl mb-6">
 												<h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center">
-													<FileText className="w-5 h-5 mr-2 text-blue-600" />
+													<FileText className="w-5 h-5 mr-2 text-teal-600" />
 													Quote Summary
 												</h3>
 												{/* Show the raw API response if available */}
@@ -633,7 +633,7 @@ const QuoteForm = () => {
 								{currentStep > 0 ? (
 									<button
 										type="button"
-										className="flex items-center px-4 py-2 text-blue-600 border border-blue-200 rounded-lg shadow-sm hover:bg-blue-50"
+										className="flex items-center px-4 py-2 text-teal-600 border border-teal-200 rounded-lg shadow-sm hover:bg-teal-50"
 										onClick={goToPrevStep}
 										disabled={isSubmitting}
 									>
@@ -647,7 +647,7 @@ const QuoteForm = () => {
 								{currentStep < steps.length - 1 ? (
 									<button
 										type="button"
-										className="flex items-center px-6 py-3 text-white bg-blue-600 rounded-lg shadow-sm hover:bg-blue-700"
+										className="flex items-center px-6 py-3 text-white bg-teal-600 rounded-lg shadow-sm hover:bg-teal-700"
 										onClick={goToNextStep}
 									>
 										Continue
@@ -673,23 +673,23 @@ const QuoteForm = () => {
 					className="max-w-3xl mx-auto mt-8 flex flex-wrap justify-center gap-6 text-sm text-gray-600"
 				>
 					<div className="flex items-center">
-						<Clock className="w-4 h-4 mr-2 text-blue-600" />
+						<Clock className="w-4 h-4 mr-2 text-teal-600" />
 						<span>2 minute process</span>
 					</div>
 					<div className="flex items-center">
-						<RefreshCw className="w-4 h-4 mr-2 text-blue-600" />
+						<RefreshCw className="w-4 h-4 mr-2 text-teal-600" />
 						<span>No obligation</span>
 					</div>
 					<div className="flex items-center">
-						<Lock className="w-4 h-4 mr-2 text-blue-600" />
+						<Lock className="w-4 h-4 mr-2 text-teal-600" />
 						<span>256-bit encryption</span>
 					</div>
 					<div className="flex items-center">
-						<Shield className="w-4 h-4 mr-2 text-blue-600" />
+						<Shield className="w-4 h-4 mr-2 text-teal-600" />
 						<span>POPI Act Compliant</span>
 					</div>
 					<div className="flex items-center">
-						<Sparkles className="w-4 h-4 mr-2 text-blue-600" />
+						<Sparkles className="w-4 h-4 mr-2 text-teal-600" />
 						<span>Free service</span>
 					</div>
 				</motion.div>

@@ -9,6 +9,7 @@ import {
 	licenseRestrictionOptions,
 	relationToPolicyHolderOptions,
 } from "@constants/formOptions";
+import { useState } from "react"; // <-- add useState
 
 const PersonalSection = ({
 	openSections,
@@ -36,6 +37,20 @@ const PersonalSection = ({
 	const policyLastName = getVal("PolicyholdersLastName") || "";
 	const policyContact = getVal("PolicyholdersContactNumber") || "";
 	const policyId = getVal("idNumber") || "";
+
+	// --- NEW LOGIC FOR NIGHT PARK/HOME ADDRESS ---
+	const nightParkAddress = {
+		addressline: getVal("nightPark.addressLine") || "",
+		suburb: getVal("nightPark.suburb") || "",
+		postalcode: getVal("nightPark.postalCode") || "",
+	};
+	const [useNightParkAsHome, setUseNightParkAsHome] = useState(false);
+
+	const handleNightParkAsHomeChange = (e) => {
+		const checked = e.target.checked;
+		setUseNightParkAsHome(checked);
+		// Optionally, you could set values here if using a form library with setValue
+	};
 
 	return (
 		<div>
@@ -275,80 +290,123 @@ const PersonalSection = ({
 						/>
 					</QuestionRow>
 				)}
+
 				{fields.includes("isHomeAddressNightParkAddr") && (
 					<>
-						<QuestionRow
-							question="Customer's Home Address"
-							name="isHomeAddressNightParkAddr.addressline"
-							value={getVal("isHomeAddressNightParkAddr.addressline")}
-							error={getErr("isHomeAddressNightParkAddr")?.addressline}
-						>
-							<InputField
-								register={register}
-								name="isHomeAddressNightParkAddr.addressline"
-								placeholder="e.g. 123 Main St"
-								required={true}
-								errors={
-									errors?.isHomeAddressNightParkAddr?.addressline
-										? {
-												isHomeAddressNightParkAddr: {
-													addressline:
-														errors.isHomeAddressNightParkAddr.addressline,
-												},
-										  }
-										: errors
-								}
-								helperText="Street address where the customer resides."
+						{/* --- NEW: Night park address same as home address switch --- */}
+						<div className="mb-4 flex items-center gap-3">
+							<input
+								type="checkbox"
+								id="nightParkSameAsHome"
+								checked={useNightParkAsHome}
+								onChange={handleNightParkAsHomeChange}
+								className="w-4 h-4 border-gray-300 rounded text-teal-600 focus:ring-teal-500"
 							/>
-						</QuestionRow>
-						<QuestionRow
-							question="Home Suburb"
-							name="isHomeAddressNightParkAddr.suburb"
-							value={getVal("isHomeAddressNightParkAddr.suburb")}
-							error={getErr("isHomeAddressNightParkAddr")?.suburb}
-						>
-							<InputField
-								register={register}
-								name="isHomeAddressNightParkAddr.suburb"
-								placeholder="e.g. Sandton"
-								required={true}
-								errors={
-									errors?.isHomeAddressNightParkAddr?.suburb
-										? {
-												isHomeAddressNightParkAddr: {
-													suburb: errors.isHomeAddressNightParkAddr.suburb,
-												},
-										  }
-										: errors
-								}
-								helperText="Suburb or area name."
-							/>
-						</QuestionRow>
-						<QuestionRow
-							question="Home Postal Code"
-							name="isHomeAddressNightParkAddr.postalcode"
-							value={getVal("isHomeAddressNightParkAddr.postalcode")}
-							error={getErr("isHomeAddressNightParkAddr")?.postalcode}
-						>
-							<InputField
-								register={register}
-								name="isHomeAddressNightParkAddr.postalcode"
-								placeholder="e.g. 2196"
-								required={true}
-								errors={
-									errors?.isHomeAddressNightParkAddr?.postalcode
-										? {
-												isHomeAddressNightParkAddr: {
-													postalcode:
-														errors.isHomeAddressNightParkAddr.postalcode,
-												},
-										  }
-										: errors
-								}
-								helperText="4-digit postal code."
-								inputMode="numeric"
-							/>
-						</QuestionRow>
+							<label
+								htmlFor="nightParkSameAsHome"
+								className="text-sm text-gray-700"
+							>
+								Is the home address the same as your night park address?
+							</label>
+						</div>
+
+						{/* --- Home address fields: show only if NOT using night park as home --- */}
+						{!useNightParkAsHome && (
+							<>
+								<QuestionRow
+									question="Customer's Home Address"
+									name="isHomeAddressNightParkAddr.addressline"
+									value={getVal("isHomeAddressNightParkAddr.addressline")}
+									error={getErr("isHomeAddressNightParkAddr")?.addressline}
+								>
+									<InputField
+										register={register}
+										name="isHomeAddressNightParkAddr.addressline"
+										placeholder="e.g. 123 Main Str"
+										required={true}
+										errors={
+											errors?.isHomeAddressNightParkAddr?.addressline
+												? {
+														isHomeAddressNightParkAddr: {
+															addressline:
+																errors.isHomeAddressNightParkAddr.addressline,
+														},
+												  }
+												: errors
+										}
+										helperText="Street address where the customer resides."
+									/>
+								</QuestionRow>
+								<QuestionRow
+									question="Home Suburb"
+									name="isHomeAddressNightParkAddr.suburb"
+									value={getVal("isHomeAddressNightParkAddr.suburb")}
+									error={getErr("isHomeAddressNightParkAddr")?.suburb}
+								>
+									<InputField
+										register={register}
+										name="isHomeAddressNightParkAddr.suburb"
+										placeholder="e.g. Sandton"
+										required={true}
+										errors={
+											errors?.isHomeAddressNightParkAddr?.suburb
+												? {
+														isHomeAddressNightParkAddr: {
+															suburb: errors.isHomeAddressNightParkAddr.suburb,
+														},
+												  }
+												: errors
+										}
+										helperText="Suburb or area name."
+									/>
+								</QuestionRow>
+								<QuestionRow
+									question="Home Postal Code"
+									name="isHomeAddressNightParkAddr.postalcode"
+									value={getVal("isHomeAddressNightParkAddr.postalcode")}
+									error={getErr("isHomeAddressNightParkAddr")?.postalcode}
+								>
+									<InputField
+										register={register}
+										name="isHomeAddressNightParkAddr.postalcode"
+										placeholder="e.g. 2196"
+										required={true}
+										errors={
+											errors?.isHomeAddressNightParkAddr?.postalcode
+												? {
+														isHomeAddressNightParkAddr: {
+															postalcode:
+																errors.isHomeAddressNightParkAddr.postalcode,
+														},
+												  }
+												: errors
+										}
+										helperText="4-digit postal code."
+										inputMode="numeric"
+									/>
+								</QuestionRow>
+							</>
+						)}
+
+						{/* --- If using night park as home, show a summary (optional) --- */}
+						{useNightParkAsHome && (
+							<div className="mb-4 p-3 bg-gray-50 rounded border text-gray-700 text-sm">
+								<strong>
+									Home address will be set to your night park address:
+								</strong>
+								<div>
+									Address:{" "}
+									{nightParkAddress.addressline || <em>Not provided</em>}
+								</div>
+								<div>
+									Suburb: {nightParkAddress.suburb || <em>Not provided</em>}
+								</div>
+								<div>
+									Postal Code:{" "}
+									{nightParkAddress.postalcode || <em>Not provided</em>}
+								</div>
+							</div>
+						)}
 					</>
 				)}
 				{fields.includes("yearsWithoutClaims") && (
@@ -393,44 +451,7 @@ const PersonalSection = ({
 						/>
 					</QuestionRow>
 				)}
-				{fields.includes("emailAddress") && (
-					<QuestionRow
-						question="Customer's Email Address"
-						name="emailAddress"
-						value={getVal("emailAddress")}
-						error={getErr("emailAddress")}
-					>
-						<InputField
-							register={register}
-							name="emailAddress"
-							placeholder="e.g. jane.doe@email.com"
-							type="email"
-							required={true}
-							errors={errors}
-							autoComplete="email"
-							helperText="For policy communication and documentation."
-						/>
-					</QuestionRow>
-				)}
-				{fields.includes("mobileNumber") && (
-					<QuestionRow
-						question="Customer's Mobile Number"
-						name="mobileNumber"
-						value={getVal("mobileNumber")}
-						error={getErr("mobileNumber")}
-					>
-						<InputField
-							register={register}
-							name="mobileNumber"
-							placeholder="e.g. 0821234567"
-							required={true}
-							errors={errors}
-							inputMode="tel"
-							autoComplete="tel"
-							helperText="South African mobile number, e.g. 0821234567 or +27821234567"
-						/>
-					</QuestionRow>
-				)}
+
 				{fields.includes("isHadLosses") && (
 					<QuestionRow
 						question="Has the customer had insurance losses in the last 5 years?"
@@ -458,8 +479,11 @@ const PersonalSection = ({
 					</QuestionRow>
 				)}
 				{fields.includes("ifClaimed") && isHadLosses === "true" && (
-					<div className="mt-6 p-4 bg-gray-50 rounded-lg">
-						<h4 className="font-semibold mb-2">Details of Claims</h4>
+					<div className="mt-6 p-4 bg-gray-50 rounded-lg space-y-6">
+						<h4 className="font-semibold mb-2 flex items-center gap-2">
+							<CreditCard className="w-4 h-4 text-blue-600" />
+							Details of Claims
+						</h4>
 						<QuestionRow
 							question="Number of Claims"
 							name="ifClaimed.numOfClaims"
@@ -471,6 +495,7 @@ const PersonalSection = ({
 								name="ifClaimed.numOfClaims"
 								placeholder="e.g. 2"
 								type="number"
+								icon={CreditCard}
 								required={true}
 								errors={
 									errors?.ifClaimed?.numOfClaims
@@ -505,6 +530,7 @@ const PersonalSection = ({
 									{ value: "theftAndHijack", label: "Theft and Highjack" },
 									{ value: "other", label: "Other" },
 								]}
+								icon={CreditCard}
 								errors={
 									errors?.ifClaimed?.causeOfClaims
 										? {
@@ -528,6 +554,8 @@ const PersonalSection = ({
 								register={register}
 								name="ifClaimed.costOfLosses"
 								placeholder="e.g. 5000"
+								type="number"
+								icon={CreditCard}
 								required={true}
 								errors={
 									errors?.ifClaimed?.costOfLosses
@@ -552,6 +580,7 @@ const PersonalSection = ({
 								register={register}
 								name="ifClaimed.additionalDescription"
 								placeholder="e.g. Rear-ended at traffic light"
+								icon={CreditCard}
 								errors={
 									errors?.ifClaimed?.additionalDescription
 										? {
@@ -579,6 +608,7 @@ const PersonalSection = ({
 									{ value: "true", label: "Yes" },
 									{ value: "false", label: "No" },
 								]}
+								icon={CreditCard}
 								errors={
 									errors?.ifClaimed?.isClaimsRejected
 										? {

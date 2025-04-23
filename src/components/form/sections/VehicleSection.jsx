@@ -114,10 +114,11 @@ const VehicleSection = ({
 					<InputField
 						register={register}
 						name="mmcode"
-						placeholder="Plate Number"
+						placeholder="RF 15 BH GP"
 						icon={Hash}
-						required={true}
+						required={false}
 						errors={errors}
+						helperText="optional"
 					/>
 				</QuestionRow>
 				<QuestionRow
@@ -129,10 +130,11 @@ const VehicleSection = ({
 					<InputField
 						register={register}
 						name="make"
-						placeholder="Car Make"
+						placeholder="BMW"
 						icon={FileType}
 						required={true}
 						errors={errors}
+						helperText="e.g BMW, Audi, Mercedes"
 					/>
 				</QuestionRow>
 				<QuestionRow
@@ -144,7 +146,7 @@ const VehicleSection = ({
 					<InputField
 						register={register}
 						name="year"
-						placeholder="Year"
+						placeholder="2016"
 						type="number"
 						icon={Calendar}
 						required={true}
@@ -167,10 +169,11 @@ const VehicleSection = ({
 					<InputField
 						register={register}
 						name="model"
-						placeholder="Model"
+						placeholder="320i"
 						icon={FileType}
 						required={true}
 						errors={errors}
+						helperText="e.g f90, A4, C-Class"
 						autoComplete="off"
 					/>
 				</QuestionRow>
@@ -185,11 +188,12 @@ const VehicleSection = ({
 					<SelectField
 						register={register}
 						name="category"
-						placeholder="Vehicle Category"
+						placeholder="select..."
 						options={categoryOptions}
 						icon={Car}
 						required={true}
 						errors={errors}
+						helperText="Select the category of your vehicle"
 					/>
 				</QuestionRow>
 				<QuestionRow
@@ -201,7 +205,7 @@ const VehicleSection = ({
 					<InputField
 						register={register}
 						name="engineSize"
-						placeholder="e.g. 1.6"
+						placeholder="1.6"
 						type="number"
 						icon={Car}
 						required={true}
@@ -225,11 +229,12 @@ const VehicleSection = ({
 					<SelectField
 						register={register}
 						name="status"
-						placeholder="Car Status"
+						placeholder="select..."
 						options={statusOptions}
 						icon={Car}
 						required={true}
 						errors={errors}
+						helperText="Is the vehicle new or used?"
 					/>
 				</QuestionRow>
 				<QuestionRow
@@ -241,31 +246,18 @@ const VehicleSection = ({
 					<SelectField
 						register={register}
 						name="colour"
-						placeholder="Colour"
+						placeholder="select..."
 						options={colourOptions}
 						icon={Palette}
 						required={true}
 						errors={errors}
+						helperText="black, blue, red, etc."
 					/>
 				</QuestionRow>
 
 				<SectionDivider text="Parking Details" />
 				{/* Switch: Is night park address the same as home address? */}
-				<div className="mb-4 flex items-center gap-3">
-					<input
-						type="checkbox"
-						id="nightParkSameAsHome"
-						checked={useHomeForNightPark}
-						onChange={handleNightParkSwitch}
-						className="w-4 h-4 border-gray-300 rounded text-teal-600 focus:ring-teal-500"
-					/>
-					<label
-						htmlFor="nightParkSameAsHome"
-						className="text-sm text-gray-700"
-					>
-						Is the night park address the same as your home address?
-					</label>
-				</div>
+
 				<QuestionRow
 					question="Where is your car parked at night? (Address line)"
 					name="nightPark.addressLine"
@@ -287,6 +279,7 @@ const VehicleSection = ({
 							useHomeForNightPark ? homeAddress.addressline : undefined
 						}
 						disabled={useHomeForNightPark}
+						helperText="Street address where your car is parked at night."
 					/>
 				</QuestionRow>
 				<QuestionRow
@@ -308,6 +301,7 @@ const VehicleSection = ({
 						errors={errors}
 						defaultValue={useHomeForNightPark ? homeAddress.suburb : undefined}
 						disabled={useHomeForNightPark}
+						helperText="Suburb or area where your car is parked at night."
 					/>
 				</QuestionRow>
 				<QuestionRow
@@ -333,6 +327,7 @@ const VehicleSection = ({
 							useHomeForNightPark ? homeAddress.postalcode : undefined
 						}
 						disabled={useHomeForNightPark}
+						helperText="4-digit postal code for night parking location."
 					/>
 				</QuestionRow>
 
@@ -355,6 +350,7 @@ const VehicleSection = ({
 						icon={Lock}
 						required={true}
 						errors={errors}
+						helperText="Select where the vehicle is usually parked overnight."
 					/>
 				</QuestionRow>
 				<QuestionRow
@@ -371,6 +367,7 @@ const VehicleSection = ({
 						icon={Lock}
 						required={true}
 						errors={errors}
+						helperText="Specify the type of location where the vehicle is parked."
 					/>
 				</QuestionRow>
 				<QuestionRow
@@ -393,6 +390,7 @@ const VehicleSection = ({
 						registerOptions={{
 							valueAsBoolean: true,
 						}}
+						helperText="Is the night parking area secured with access control?"
 					/>
 				</QuestionRow>
 				<QuestionRow
@@ -415,6 +413,7 @@ const VehicleSection = ({
 						registerOptions={{
 							valueAsBoolean: true,
 						}}
+						helperText="Is there a security guard present at the night parking area?"
 					/>
 				</QuestionRow>
 
@@ -441,6 +440,7 @@ const VehicleSection = ({
 						registerOptions={{
 							valueAsBoolean: true,
 						}}
+						helperText="Are you the registered owner of the vehicle?"
 					/>
 				</QuestionRow>
 				{isOwner === false && (
@@ -459,6 +459,7 @@ const VehicleSection = ({
 								icon={User}
 								required={true}
 								errors={errors}
+								helperText="Enter the owner's first name."
 							/>
 						</QuestionRow>
 						<QuestionRow
@@ -474,6 +475,7 @@ const VehicleSection = ({
 								icon={User}
 								required={true}
 								errors={errors}
+								helperText="Enter the owner's surname."
 							/>
 						</QuestionRow>
 						<QuestionRow
@@ -489,6 +491,7 @@ const VehicleSection = ({
 								icon={Phone}
 								required={true}
 								errors={errors}
+								helperText="Enter the owner's contact number."
 							/>
 						</QuestionRow>
 						<QuestionRow
@@ -504,6 +507,7 @@ const VehicleSection = ({
 								icon={CreditCard}
 								required={true}
 								errors={errors}
+								helperText="Enter the owner's South African ID number."
 							/>
 						</QuestionRow>
 						<QuestionRow
@@ -524,6 +528,7 @@ const VehicleSection = ({
 								icon={User}
 								required={true}
 								errors={errors}
+								helperText="Specify your relationship to the vehicle owner."
 							/>
 						</QuestionRow>
 					</div>
@@ -547,6 +552,7 @@ const VehicleSection = ({
 								errors={{}}
 								defaultValue={policyFirstName}
 								disabled={true}
+								helperText="Prefilled from policyholder details."
 							/>
 						</QuestionRow>
 						<QuestionRow
@@ -564,6 +570,7 @@ const VehicleSection = ({
 								errors={{}}
 								defaultValue={policyLastName}
 								disabled={true}
+								helperText="Prefilled from policyholder details."
 							/>
 						</QuestionRow>
 						<QuestionRow
@@ -581,6 +588,7 @@ const VehicleSection = ({
 								errors={{}}
 								defaultValue={policyContact}
 								disabled={true}
+								helperText="Prefilled from policyholder details."
 							/>
 						</QuestionRow>
 						<QuestionRow
@@ -598,6 +606,7 @@ const VehicleSection = ({
 								errors={{}}
 								defaultValue={policyId}
 								disabled={true}
+								helperText="Prefilled from policyholder details."
 							/>
 						</QuestionRow>
 						<QuestionRow
@@ -620,6 +629,7 @@ const VehicleSection = ({
 								errors={{}}
 								defaultValue="self"
 								disabled={true}
+								helperText="Prefilled as 'Self'."
 							/>
 						</QuestionRow>
 					</div>
@@ -648,6 +658,7 @@ const VehicleSection = ({
 						registerOptions={{
 							valueAsBoolean: true,
 						}}
+						helperText="Are you the person who drives the vehicle most often?"
 					/>
 				</QuestionRow>
 				{partyregularDriver === false && (
@@ -666,6 +677,7 @@ const VehicleSection = ({
 								icon={User}
 								required={true}
 								errors={errors}
+								helperText="Enter the regular driver's first name."
 							/>
 						</QuestionRow>
 						<QuestionRow
@@ -681,6 +693,7 @@ const VehicleSection = ({
 								icon={User}
 								required={true}
 								errors={errors}
+								helperText="Enter the regular driver's surname."
 							/>
 						</QuestionRow>
 						<QuestionRow
@@ -696,6 +709,7 @@ const VehicleSection = ({
 								icon={Phone}
 								required={true}
 								errors={errors}
+								helperText="Enter the regular driver's contact number."
 							/>
 						</QuestionRow>
 						<QuestionRow
@@ -711,6 +725,7 @@ const VehicleSection = ({
 								icon={CreditCard}
 								required={true}
 								errors={errors}
+								helperText="Enter the regular driver's South African ID number."
 							/>
 						</QuestionRow>
 						<QuestionRow
@@ -731,6 +746,7 @@ const VehicleSection = ({
 								icon={User}
 								required={true}
 								errors={errors}
+								helperText="Specify your relationship to the regular driver."
 							/>
 						</QuestionRow>
 					</div>
@@ -759,6 +775,7 @@ const VehicleSection = ({
 						registerOptions={{
 							valueAsBoolean: true,
 						}}
+						helperText="Do you have any physical disabilities?"
 					/>
 				</QuestionRow>
 				{isDisabled === true && (
@@ -775,6 +792,7 @@ const VehicleSection = ({
 							icon={User}
 							required={true}
 							errors={errors}
+							helperText="Briefly describe the nature of the disability."
 						/>
 					</QuestionRow>
 				)}
@@ -792,6 +810,7 @@ const VehicleSection = ({
 						icon={Car}
 						required={true}
 						errors={errors}
+						helperText="Select the primary use of the vehicle."
 					/>
 				</QuestionRow>
 				<QuestionRow
@@ -816,6 +835,7 @@ const VehicleSection = ({
 						registerOptions={{
 							valueAsBoolean: true,
 						}}
+						helperText="Are there any non-standard accessories fitted?"
 					/>
 				</QuestionRow>
 				{isAccessories === true && (
@@ -833,6 +853,7 @@ const VehicleSection = ({
 							icon={Car}
 							required={true}
 							errors={errors}
+							helperText="Enter the total value of all accessories (ZAR)."
 						/>
 					</QuestionRow>
 				)}
@@ -858,6 +879,7 @@ const VehicleSection = ({
 						registerOptions={{
 							valueAsBoolean: true,
 						}}
+						helperText="Is the vehicle currently under a finance agreement?"
 					/>
 				</QuestionRow>
 				{isFinanced === true && (
@@ -874,6 +896,7 @@ const VehicleSection = ({
 							icon={Car}
 							required={true}
 							errors={errors}
+							helperText="Enter the name of the financing institution."
 						/>
 					</QuestionRow>
 				)}
@@ -899,6 +922,7 @@ const VehicleSection = ({
 						registerOptions={{
 							valueAsBoolean: true,
 						}}
+						helperText="Is an active tracking device installed in the vehicle?"
 					/>
 				</QuestionRow>
 				<QuestionRow
@@ -918,6 +942,7 @@ const VehicleSection = ({
 						icon={Car}
 						required={true}
 						errors={errors}
+						helperText="Select the basis for the vehicle's insured value."
 					/>
 				</QuestionRow>
 				<QuestionRow
@@ -937,6 +962,7 @@ const VehicleSection = ({
 						registerOptions={{
 							valueAsNumber: true,
 						}}
+						helperText="Enter the estimated current retail value (ZAR)."
 					/>
 				</QuestionRow>
 				<QuestionRow
@@ -953,6 +979,7 @@ const VehicleSection = ({
 						icon={Car}
 						required={true}
 						errors={errors}
+						helperText="Select the type of insurance cover required."
 					/>
 				</QuestionRow>
 			</FormSection>

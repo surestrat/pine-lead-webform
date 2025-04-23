@@ -22,7 +22,7 @@
 }
 
 .form-input-valid {
-	@apply border-gray-200 focus:ring-blue-500 focus:border-blue-500;
+	@apply border-gray-200 focus:ring-teal-500 focus:border-teal-500;
 }
 
 .form-input-error {
@@ -31,11 +31,11 @@
 
 /* Button styles */
 .primary-button {
-	@apply px-6 py-3 bg-blue-600 text-white rounded-lg shadow-sm hover:bg-blue-700 transition-colors;
+	@apply px-6 py-3 bg-teal-600 text-white rounded-lg shadow-sm hover:bg-teal-700 transition-colors;
 }
 
 .secondary-button {
-	@apply px-4 py-2 border border-blue-200 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors;
+	@apply px-4 py-2 border border-teal-200 text-teal-600 rounded-lg hover:bg-teal-50 transition-colors;
 }
 
 /* Progress indicator styles */
@@ -44,7 +44,7 @@
 }
 
 .progress-bar {
-	@apply h-full bg-blue-500 transition-all duration-500 ease-out;
+	@apply h-full bg-teal-500 transition-all duration-500 ease-out;
 }
 
 /* Animation utilities */
